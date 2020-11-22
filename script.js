@@ -1,6 +1,6 @@
 
 //my openweathermap api key
-var api_key = 'your api key';
+var api_key = '6b64a0d71c29041c27e6218c1cc37154';
 
 //var cities = [Bangkok, Paris, London, Dubai, Singapore, Kuala Lumpur, New York City, Istanbul, Tokyo, Antalya];
 
@@ -49,10 +49,14 @@ function displayWeather(data) {
 	document.getElementById('description').innerHTML = description;
 	document.getElementById('temp').innerHTML = data.main.temp + '&deg;';
 	document.getElementById('location').innerHTML = data.name;
-	//document.getElementById('visibility').innerHTML = data.visibility;
+
+	//document.getElementById('visibility').innerHTML = data.visibility; (test)
 
 	//assign a background color in css based on the description of the weather from the api
+	//if the value in description is equal to that word then it will be greater than 0 else it will never be
 	if (description.indexOf('rain') > 0) {
+		/*document gets the webpage html then it directs to the body tag then sets its 
+		className parameter to rainy which connects to the css*/
 		document.body.className = 'rainy';
 	} else if (description.indexOf('cloud') > 0) {
 		document.body.className = 'cloudy';
@@ -63,6 +67,7 @@ function displayWeather(data) {
 	}
 }
 
+//validate whether or not the city name inputed by the user is a string (test function ignore)
 function validateCityNameString(cityName) {
 	if (isNaN(cityName) && !cityName.includes("'") && !cityName.includes('"')) {
 		console.log("It is a string");
@@ -71,26 +76,30 @@ function validateCityNameString(cityName) {
 	}
 }
 
-//creates reference to button
+//creates reference to button on webpage
 var button = document.getElementById('submitBtn');
 
 //detects button click and executes function
 button.onclick = function () {
-	//getWeatherByCityLocation('Miami', 'imperial');
+
+	//gets the user input on button click and validate it (test function ignore)
 	var text_field = document.getElementById("cityName").value;
 	validateCityNameString(text_field);
 	console.log(text_field);
-
-
 }
 
 //executes everytime the window loads/reloads
 window.onload = function () {
 
-	//getWeatherByCityLocation('London', 'imperial');
-	getWeatherByCityId(3110016, 'imperial');
+	//runs 
+	//getWeatherByCityId(3110016, 'imperial');
 
-	//readTextFile("cityNames.txt");
-	//getWeatherByCityLocation('Miami', 'imperial');
-	//getWeatherByCityLocation('New York', 'imperial');
-}
+	//Test calles for the city location fetch
+	getWeatherByCityLocation('Miami', 'imperial');
+
+	//waits 5 seconds then changes the weather on the webpage from miami to new york
+	window.setTimeout(function () {
+		getWeatherByCityLocation('New York', 'imperial');
+
+	}, 5000);
+}	
