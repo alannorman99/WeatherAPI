@@ -1,6 +1,6 @@
 
 //my openweathermap api key
-var api_key = '{your api key}';
+var api_key = 'your api key';
 
 //var cities = [Bangkok, Paris, London, Dubai, Singapore, Kuala Lumpur, New York City, Istanbul, Tokyo, Antalya];
 
