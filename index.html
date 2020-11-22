@@ -10,25 +10,37 @@
 
 
 
+
 </head>
 
 <body>
 	<div class="container">
-		<div id="weather">
+		<div class="weather" id="weather">
 			<div id="description"></div>
 			<h1 id="temp"></h1>
 			<div id="location"></div>
 			<div id="visibility"></div>
-
+		</div>
+		<div class="cityList" id="cityList">
+			<table id="cityTable">
+				<tr>
+					<th>City Name</th>
+				</tr>
+			</table>
 		</div>
 		<div>
 			<button id="submitBtn">Submit</button>
 		</div>
+		<div class="inner">
+			<label for='cityName'>City Name:</label>
+			<input type='text' id='cityName' name="city">
+		</div>
 	</div>
 
+
 	<script src="script.js"></script>
-	<script src="parser.js"></script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<!--<script src="parser.js"></script>-->
+
 </body>
 
 </html>

@@ -26,6 +26,9 @@ body.cloudy {
 body.rainy {
     background-image: linear-gradient(to right top, #637c7b, #718e8c, #7ea09e, #8db2b0, #9bc5c3);
 }
+body.broken {
+    background-image: linear-gradient(to right top, #637c7b, #718e8c, #7ea09e, #8db2b0, #9bc5c3);
+}
 button {
 	height: 22px;
 	margin: 0;
@@ -36,8 +39,20 @@ button {
 	transform: translate(-50%, -50%);
 }
 .container { 
-	height: 200px;
+    height: 500px;
+    width: 500px;
 	position: relative;
 	border: 3px solid green; 
   }
+  .inner {
+    position: absolute;
+    top: 250px;
+  }
+  .weather {
+      float: left;
+  }
+  .cityList {
+      float: right;
+  }
+  
   
