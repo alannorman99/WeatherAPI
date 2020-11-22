@@ -28,6 +28,7 @@ function getWeatherByCityId(cityId, unit) {
 		.catch(function () {
 			console.log("error");
 		});
+
 }
 
 //assigns the html tags to specific data from the json object and displays it in the browser
