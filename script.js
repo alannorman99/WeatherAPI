@@ -1,6 +1,6 @@
 
 //my openweathermap api key
-var api_key = '6b64a0d71c29041c27e6218c1cc37154';
+var api_key = '';
 
 //var cities = [Bangkok, Paris, London, Dubai, Singapore, Kuala Lumpur, New York City, Istanbul, Tokyo, Antalya];
 
