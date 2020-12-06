@@ -84,7 +84,7 @@ body.broken {
 }
 
 .city-form {
-  top: 20px;
+  top: 130px;
   margin: 0 auto;
   position: relative;
   float: left;
@@ -95,14 +95,31 @@ body.broken {
   height: 150px;
   float: left;
   position: relative;
-  top: 75px;
+  top: 140px;
 }
 
 table,
 th,
 td {
+  border: 1px solid black;
   font-size: 20px;
   padding: 5px;
   text-align: center;
   float: center;
+}
+
+#humidity {
+  width: 50%;
+  float: right;
+}
+#location {
+  color: lightgreen;
+  font-weight: bold;
+  float: left;
+  width: 50%;
+}
+
+#wind {
+  position: relative;
+  top: 20px;
 }

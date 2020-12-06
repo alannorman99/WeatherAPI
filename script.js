@@ -15,8 +15,6 @@ const days = {
 	6: 'Saturday'
 }
 
-
-
 //var cities = [Bangkok, Paris, London, Dubai, Singapore, Kuala Lumpur, New York City, Istanbul, Tokyo, Antalya];
 
 function getForecastByCityLocation(cityLocation, unit) {
@@ -81,6 +79,9 @@ function displayWeather(data) {
 	document.getElementById('temp').innerHTML = data.main.temp + '&deg;';
 	document.getElementById('location').innerHTML = data.name;
 
+	document.getElementById('humidity').innerHTML = "Humidity: " + data.main.humidity;
+	document.getElementById('wind').innerHTML = `Wind: ${data.wind.speed} mph \u00A0 \u00A0 \u00A0 @${data.wind.deg}&deg`;
+
 	//document.getElementById('visibility').innerHTML = data.visibility; (test)
 
 	//assign a background color in css based on the description of the weather from the api
@@ -139,8 +140,6 @@ function fillForecastTemps(data) {
 		}
 		sum = sum + data.list[item].main.temp;
 
-		console.log(sum);
-
 
 		counter++;
 	}
@@ -152,7 +151,6 @@ function fillForecastTemps(data) {
 		tempCount++;
 	});
 
-	console.log(temps);
 
 }
 
