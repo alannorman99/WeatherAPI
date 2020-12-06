@@ -1,8 +1,39 @@
 
+const cityName = document.querySelector('.city-form');
+const forecastDiv = document.querySelector('.forecast');
+const forecastHeader = document.getElementById('days-header');
 //my openweathermap api key
-var api_key = '';
+var api_key = '6b64a0d71c29041c27e6218c1cc37154';
+
+const days = {
+	0: 'Sunday',
+	1: 'Monday',
+	2: 'Tuesday',
+	3: 'Wednesday',
+	4: 'Thursday',
+	5: 'Friday',
+	6: 'Saturday'
+}
+
+
 
 //var cities = [Bangkok, Paris, London, Dubai, Singapore, Kuala Lumpur, New York City, Istanbul, Tokyo, Antalya];
+
+function getForecastByCityLocation(cityLocation, unit) {
+	//fetch call to openweather api using the url provided
+	fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityLocation + '&units=' + unit + '&APPID=' + api_key)
+		//.then means to continue with the data from fetch and put it through a function that returns the response as json(javascript object notation)
+		.then(function (response) { return response.json() })
+		//that json comes as (data) and we run it though our displayWeather function and log it to console
+		.then(function (data) {
+			fillForecastTemps(data);
+			console.log(data);
+		})
+		//this catches any errors from the fetch so nothing crashes
+		.catch(function (error) {
+			console.error(error);
+		});
+}
 
 
 //function to get weather date based on a specific city (cityLocation) and the type of unit you want used (metric, imperial, etc.)
@@ -69,37 +100,82 @@ function displayWeather(data) {
 
 //validate whether or not the city name inputed by the user is a string (test function ignore)
 function validateCityNameString(cityName) {
-	if (isNaN(cityName) && !cityName.includes("'") && !cityName.includes('"')) {
-		console.log("It is a string");
-	} else {
-		console.log("It isn't a string");
+	return cityName && cityName.toString().trim() != '';
+
+}
+
+function fillForecastDays() {
+
+	var date = new Date();
+	var day = date.getDay();
+
+	count = 5;
+	dayCount = 1;
+
+	while (count > 0) {
+		day++;
+		if (day > 6) {
+			day = 0;
+		}
+
+		document.getElementById('day' + dayCount + '-table').innerHTML = days[day];
+
+		dayCount++;
+		count--;
 	}
 }
 
-//creates reference to button on webpage
-var button = document.getElementById('submitBtn');
+function fillForecastTemps(data) {
 
-//detects button click and executes function
-button.onclick = function () {
+	var temps = [];
+	let counter = 1;
+	let sum = 0;
 
-	//gets the user input on button click and validate it (test function ignore)
-	var text_field = document.getElementById("cityName").value;
-	validateCityNameString(text_field);
-	console.log(text_field);
+	for (item in data.list) {
+		if (counter === 8) {
+			temps.push(sum);
+			sum = 0;
+			counter = 0;
+		}
+		sum = sum + data.list[item].main.temp;
+
+		console.log(sum);
+
+
+		counter++;
+	}
+
+	tempCount = 1;
+
+	temps.forEach(temp => {
+		document.getElementById('temp' + tempCount + "-table").innerHTML = Math.round(temp / 8, 0);
+		tempCount++;
+	});
+
+	console.log(temps);
+
 }
 
 //executes everytime the window loads/reloads
 window.onload = function () {
 
-	//runs 
-	//getWeatherByCityId(3110016, 'imperial');
+	fillForecastDays();
+	getForecastByCityLocation("Miami", 'imperial')
+
+	cityName.addEventListener('submit', (event) => {
+		event.preventDefault();
+		const data = new FormData(cityName);
+		const name = data.get('city-name');
+
+		if (validateCityNameString(name)) {
+			getWeatherByCityLocation(name, "imperial");
+		}
+
+		getForecastByCityLocation(name, 'imperial')
+
+	});
 
 	//Test calles for the city location fetch
 	getWeatherByCityLocation('Miami', 'imperial');
 
-	//waits 5 seconds then changes the weather on the webpage from miami to new york
-	window.setTimeout(function () {
-		getWeatherByCityLocation('New York', 'imperial');
-
-	}, 5000);
 }	

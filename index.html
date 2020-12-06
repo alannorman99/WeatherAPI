@@ -5,8 +5,10 @@
 	<meta charset="utf-8">
 	<title>Current Weather</title>
 
-	<link rel="stylesheet" href="style.css">
+	
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,900">
+	<link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -18,25 +20,39 @@
 			<div id="location"></div>
 			<div id="visibility"></div>
 		</div>
-		<div class="cityList" id="cityList">
-			<table id="cityTable">
-				<tr>
-					<th>City Name</th>
-				</tr>
-			</table>
-		</div>
-		<div>
-			<button id="submitBtn">Submit</button>
-		</div>
-		<div class="inner">
-			<label for='cityName'>City Name:</label>
-			<input type='text' id='cityName' name="city">
-		</div>
+
+				<form class="city-form">
+					<label for="city-name">City Name: </label>
+					<input id="city-name" type="text" name="city-name">
+					<button class="button-primary">Submit</button>
+				</form>
+
+				<div class="forecast" id="forecast">
+					<table >
+						<tr>
+							<td id="day1-table"></td>
+							<td id="day2-table"></td>
+							<td id="day3-table"></td>
+							<td id="day4-table"></td>
+							<td id="day5-table"></td>
+						</tr>
+						<tr>
+						  <td id="temp1-table"></td>
+						  <td id="temp2-table"></td>
+						  <td id="temp3-table"></td>
+						  <td id="temp4-table"></td>
+						  <td id="temp5-table"></td>
+						</tr>
+					
+					  </table>
+				</div>
+		
+	
 	</div>
 
 
 	<script src="script.js"></script>
-	<!--<script src="parser.js"></script>-->
+
 
 </body>
 
